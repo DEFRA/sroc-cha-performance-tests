@@ -9,7 +9,7 @@
 
 dotenv=""
 
-# Unlike run.sh we DO set a default file. We can't create new tests in CLI mode so there is no point in starting up
+# Unlike gui.sh we DO set a default file. We can't create new tests in CLI mode so there is no point in starting up
 # JMeter with just the env vars loaded. tests.jmx currently contains all our tests hence its our default (though we
 # set it in the case statement below).
 testFile=""

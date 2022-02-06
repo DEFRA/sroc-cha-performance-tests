@@ -4,8 +4,8 @@
 #
 # Arg1 is the environment to load config for. Arg2 is the JMeter file to load. Examples of how to load it are
 #
-# $ ./run.sh dev tests.jmx
-# $ ./run.sh local
+# $ ./gui.sh dev tests.jmx
+# $ ./gui.sh local
 
 dotenv=""
 
