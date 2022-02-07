@@ -39,23 +39,64 @@ Git is setup to ignore everything bar the example environment file. Even so, dou
 
 ## Execution
 
-The project is currently setup to run JMeter in GUI mode. Tests can be created, edited and run from the GUI though it's recommended to use [CLI mode](https://jmeter.apache.org/usermanual/best-practices.html#lean_mean) when running the tests for real.
+Test plans can be run in either [GUI](https://jmeter.apache.org/usermanual/get-started.html#running) or [CLI](https://jmeter.apache.org/usermanual/get-started.html#non_gui) mode.
+
+Use GUI mode to create, edit and and debug tests. It's [recommended](https://jmeter.apache.org/usermanual/best-practices.html#lean_mean) to use CLI mode when running the tests for real.
+
+### GUI Mode
 
 From the root of the project in a terminal run
 
 ```bash
-./run.sh test tests.jmx
+./gui.sh test tests.jmx
 ```
 
 The first arg is required and is the name of the environment to use and should match the name of a config file in `environments/`. For example
 
 ```bash
-./run.sh dev tests.jmx # environments/.dev.env
-./run.sh local tests.jmx # environments/.local.env
-./run.sh test tests.jmx # environments/.test.env
+./gui.sh dev tests.jmx # environments/.dev.env
+./gui.sh local tests.jmx # environments/.local.env
+./gui.sh test tests.jmx # environments/.test.env
 ```
 
 The second arg is the JMeter `.jmx` file to load. This is not required and if left blank JMeter will start in its default state ready to create a new `.jmx` file. Everything from the environment config will still be available though, loaded as environment variables in the current session.
+
+### CLI mode
+
+From the root of the project in a terminal run
+
+```bash
+./gui.sh test tests.jmx
+```
+
+The first arg is required and is the name of the environment to use and should match the name of a config file in `environments/`. For example
+
+```bash
+./gui.sh dev tests.jmx # environments/.dev.env
+./gui.sh local tests.jmx # environments/.local.env
+./gui.sh test tests.jmx # environments/.test.env
+```
+
+The second arg is the JMeter `.jmx` file to load. This is not required and if left the script will default to using `tests.jmx`.
+
+When run in this way no GUI will appear and test output will be written to a [.jtl file](https://jmeter.apache.org/usermanual/listeners.html#batch).
+
+## Enabling/Disabling tests
+
+JMeter stores test plans in `.jmx` files. Our main test plan `tests.jmx` features multiple scenarios to be tested. These are held under [Thread Groups](https://jmeter.apache.org/usermanual/test_plan.html#thread_group).
+
+From the GUI you can disable and enable these thread groups (scenarios). But this information is saved to the jmx file. This can be a problem when switching between GUI and CLI mode. Instead we use environment variables to control which groups will be run.
+
+```bash
+CMS_STANDARD_JOURNEY_THREAD_COUNT=1
+CMS_DELETE_LICENCE_JOURNEY_THREAD_COUNT=0
+CMS_DELETE_JOURNEY_THREAD_COUNT=0
+CMS_REBILLING_JOURNEY_THREAD_COUNT=0
+```
+
+> See /environments/.example.env for a full example
+
+Any thread group with a count of 0 _will not be run_.
 
 ## Contributing to this project
 

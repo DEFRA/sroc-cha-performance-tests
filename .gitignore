@@ -21,6 +21,10 @@ chromedriver.log
 /.byebug_history
 *.log
 
+# JMeter test output. Created when running JMeter in CLI mode using cli.sh.
+# Note: each time cli.sh is run it will delete the existing .jtl file for the specified test first
+*.jtl
+
 # Dotenv https://github.com/motdotla/dotenv
 # Ignore our .env files as they contain actual credentials. The .example.env file gets committed to act as documentation
 # on what environment variables need to be set up
