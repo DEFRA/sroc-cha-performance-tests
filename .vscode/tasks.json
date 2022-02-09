@@ -1,0 +1,112 @@
+{
+  // See https://go.microsoft.com/fwlink/?LinkId=733558
+  // for the documentation about the tasks.json format
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "🚧 BUILD (CMA-PERF)",
+      "detail": "Build the docker image locally",
+      "type": "shell",
+      "command": "docker build -t sroc-cha-performance-tests:latest .",
+      "group": "test",
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": true,
+        "panel": "dedicated",
+        "showReuseMessage": false,
+        "clear": true
+      }
+    },
+    {
+      "label": "🏗️ REBUILD (CMA-PERF)",
+      "detail": "Build the docker image locally",
+      "type": "shell",
+      "command": "docker build --no-cache -t sroc-cha-performance-tests:latest .",
+      "group": "test",
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": true,
+        "panel": "dedicated",
+        "showReuseMessage": false,
+        "clear": true
+      }
+    },
+    {
+      "label": "💻 OPEN (CMA-PERF)",
+      "detail": "Will open /bin/sh in the running 'app' container",
+      "type": "shell",
+      "command": "docker run --rm --env-file .env -it sroc-cha-performance-tests:latest /bin/bash",
+      "group": "test",
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": true,
+        "panel": "dedicated",
+        "showReuseMessage": false,
+        "clear": false
+      }
+    },
+    {
+      "label": "✅ RUN DEV (CMA-PERF)",
+      "detail": "Run performance tests against DEV",
+      "type": "shell",
+      "command": "docker run --rm --env-file environments/.dev.env -v `pwd`/output:/opt/output sroc-cha-performance-tests:latest",
+      "group": "test",
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": true,
+        "panel": "shared",
+        "showReuseMessage": false,
+        "clear": true
+      }
+    },
+    {
+      "label": "✅ RUN TST (CMA-PERF)",
+      "detail": "Run performance tests against TST",
+      "type": "shell",
+      "command": "docker run --rm --env-file environments/.test.env -v `pwd`/output:/opt/output sroc-cha-performance-tests:latest",
+      "group": "test",
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": true,
+        "panel": "shared",
+        "showReuseMessage": false,
+        "clear": true
+      }
+    },
+    {
+      "label": "✅ RUN LOCAL (CMA-PERF)",
+      "detail": "Run performance tests locally",
+      "type": "shell",
+      "command": "docker run --rm --env-file environments/.docker.env -v `pwd`/output:/opt/output sroc-cha-performance-tests:latest",
+      "group": "test",
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": true,
+        "panel": "shared",
+        "showReuseMessage": false,
+        "clear": true
+      }
+    },
+    {
+      "label": "📈 REPORT (CMA-PERF)",
+      "detail": "Open generated html report",
+      "type": "shell",
+      "command": "open output/report/index.html",
+      "group": "test",
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": true,
+        "panel": "shared",
+        "showReuseMessage": false,
+        "clear": true
+      }
+    }
+  ]
+}
