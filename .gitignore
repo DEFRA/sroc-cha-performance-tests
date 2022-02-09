@@ -25,8 +25,13 @@ chromedriver.log
 # Note: each time cli.sh is run it will delete the existing .jtl file for the specified test first
 *.jtl
 
+# Created after building the project's Docker image and then running the JMeter tests from the root of the project. It
+# contains the output from JMeter in Docker including the .log, .jtl and generated html report
+/output/*
+
 # Dotenv https://github.com/motdotla/dotenv
 # Ignore our .env files as they contain actual credentials. The .example.env file gets committed to act as documentation
 # on what environment variables need to be set up
+.env
 /environments/*
 !/environments/.example.env
