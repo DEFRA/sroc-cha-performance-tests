@@ -98,6 +98,10 @@ CMS_REBILLING_JOURNEY_THREAD_COUNT=0
 
 Any thread group with a count of 0 _will not be run_.
 
+## Docker
+
+[Docker](https://www.docker.com/) is our chosen solution for deploying and managing our apps in production. We also use it for local development and where possible to simplify the use of our support projects. **SROC Charging Module API Performance tests** supports using Docker to run the tests. This avoids needing to setup a JMeter environment manually. See [the README in Docker/](/docker/README.md) for more details.
+
 ## Contributing to this project
 
 If you have an idea you'd like to contribute please log an issue.
